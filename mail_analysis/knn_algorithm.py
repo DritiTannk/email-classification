@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, \
-    precision_score, recall_score, f1_score, precision_recall_fscore_support
+                            precision_score, recall_score, f1_score,\
+                            precision_recall_fscore_support, accuracy_score
 
 
 class KnnAlgorithmAnalysis:
@@ -39,6 +40,9 @@ class KnnAlgorithmAnalysis:
                                                                     colorbar=False
                                                                     )
             file_name = f'conf_mat_{train_size}.png'
+
+            accuracy_rate = accuracy_score(y_test, knn_y_pred)
+            print('\n\n ACCURACY RATE ==> ', accuracy_rate)
 
             knn_precision_rate = precision_score(y_test, knn_y_pred)
             print('\n\n PRECISION RATE ==> ', knn_precision_rate)

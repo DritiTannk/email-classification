@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, \
-    precision_score, recall_score, f1_score, precision_recall_fscore_support
+                     precision_score, recall_score, f1_score, \
+                     precision_recall_fscore_support, accuracy_score
 
 
 class DecisionTreeAnalysis:
@@ -40,6 +41,9 @@ class DecisionTreeAnalysis:
                                                                     )
             file_name = f'conf_mat_{train_size}.png'
             print('\n\n Confusion Matrix --> ', tree_conf)
+
+            accuracy_rate = accuracy_score(y_test, tree_y_pred)
+            print('\n\n ACCURACY RATE ==> ', accuracy_rate)
 
             tree_precision_rate = precision_score(y_test, tree_y_pred)
             print('\n\n PRECISION RATE ==> ', tree_precision_rate)

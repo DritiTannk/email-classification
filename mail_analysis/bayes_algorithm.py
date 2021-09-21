@@ -5,7 +5,8 @@ from sklearn.naive_bayes import GaussianNB
 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, \
                             precision_score, recall_score, \
-                            f1_score, precision_recall_fscore_support
+                            f1_score, precision_recall_fscore_support, \
+                            accuracy_score
 
 
 class BayesAlgorithmAnalysis:
@@ -36,9 +37,16 @@ class BayesAlgorithmAnalysis:
             bayes_conf = confusion_matrix(y_test, bayes_y_pred, labels=[0, 1])
             print('\n\n Confusion Matrix Result  --> \n\n', bayes_conf)
 
-            ConfusionMatrixDisplay(bayes_conf, display_labels=bayes.classes_).plot(cmap='Blues', xticks_rotation='horizontal', colorbar=False)
+            ConfusionMatrixDisplay(bayes_conf,
+                                   display_labels=bayes.classes_).plot(cmap='Blues',
+                                                                       xticks_rotation='horizontal',
+                                                                       colorbar=False
+                                                                    )
             file_name = f'conf_mat_{train_size}.png'
             plt.savefig(f'output/bayes/{file_name}')
+
+            accuracy_rate = accuracy_score(y_test, bayes_y_pred)
+            print('\n\n ACCURACY RATE ==> ', accuracy_rate)
 
             bayes_precision_rate = precision_score(y_test, bayes_y_pred)
             print('\n\n PRECISION RATE ==> ', bayes_precision_rate)

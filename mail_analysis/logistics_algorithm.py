@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, \
-    precision_score, recall_score, f1_score, precision_recall_fscore_support
+    precision_score, recall_score,\
+    f1_score, precision_recall_fscore_support, accuracy_score
 
 
 class LogisticAlgorithmAnalysis:
@@ -32,8 +33,15 @@ class LogisticAlgorithmAnalysis:
 
             result = confusion_matrix(y_test,log_y_pred, labels=[0, 1])
             print('\n\n result --> ', result)
-            ConfusionMatrixDisplay(result, display_labels=log_algo.classes_).plot(cmap='Blues', xticks_rotation='horizontal', colorbar=False)
+            ConfusionMatrixDisplay(result, display_labels=log_algo.classes_).plot(
+                                                                                cmap='Blues',
+                                                                                xticks_rotation='horizontal',
+                                                                                colorbar=False
+                                                                                )
             file_name = f'conf_mat_{train_size}.png'
+
+            accuracy_rate = accuracy_score(y_test, log_y_pred)
+            print('\n\n ACCURACY RATE ==> ', accuracy_rate)
 
             precision_rate = precision_score(y_test, log_y_pred)
             print('\n\n PRECISION RATE ==> ', precision_rate)
